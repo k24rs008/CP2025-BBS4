@@ -122,18 +122,6 @@ textarea.form-control {
     cursor: not-allowed;
 }
 
-/* アニメーション */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 /* 投稿一覧 */
 .posts-container {
     margin-top: 30px;
@@ -178,14 +166,79 @@ textarea.form-control {
     align-items: center;
 }
 
+.post-actions {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.btn-edit, .btn-delete {
+    padding: 4px 8px;
+    font-size: 12px;
+    min-width: 60px;
+    border: none;
+    border-radius: 4px;
+}
+
 .post-author {
     font-weight: 600;
     color: #333;
 }
 
+/* 編集フォーム */
+.edit-form {
+    display: none;
+    margin: 10px 0;
+}
+
+.editing .post-content {
+    display: none;
+}
+
+.editing .edit-form {
+    display: block;
+}
+
+.btn-cancel {
+    background-color: #6c757d;
+    color: white;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-cancel:hover {
+    background-color: #5a6268;
+}
+
 .post-time {
+    margin-right: 10px;
+}
+
+.post-updated {
     color: #666;
     font-size: 0.9em;
+}
+
+.btn-edit {
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-edit:hover {
+    background-color: #218838;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
 }
 
 .post-content {
@@ -213,6 +266,39 @@ textarea.form-control {
     animation: spin 1s linear infinite;
 }
 
+@keyframes highlight {
+    0% { background-color: #fff; }
+    50% { background-color: #e3f2fd; }
+    100% { background-color: #fff; }
+}
+
+.updated {
+    animation: highlight 1s ease-in-out;
+}
+ 
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .post {
+        padding: 12px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+    }
+}
+
 /* アニメーション */
 @keyframes fadeIn {
     from {
@@ -228,4 +314,20 @@ textarea.form-control {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+/* 削除アニメーション */
+@keyframes fadeOut {
+    from { 
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to { 
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+}
+
+.deleting {
+    animation: fadeOut 0.3s ease-in-out forwards;
 }
